@@ -1,0 +1,1074 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+
+
+<!-- CREATED BY VISAKH R-->
+<!-- VISAKH.RAJENDRAN@SBI.CO.IN -->
+
+
+<META http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+<TITLE>Quick Links</TITLE>     
+<base target="_blank">
+<STYLE type="text/css">
+   html {position: fixed; top:0px; right:0px; bottom:0px; left:0px;}
+   body {margin:0px; padding:0px; position: absolute; top:0px; right:0px; bottom:0px; left:0px; background-color:#ADD2FF; color:rgb(16, 73, 143);}
+   .rndBdr {border-radius: 5px; box-shadow: 4px 4px 4px #333; border:1px solid white; }
+
+   .tab1 a {color: rgb(16, 73, 143); text-decoration: none;}
+   .tab1 a:active {color: rgb(16, 73, 143); text-decoration: none;}
+   .tab1 a:hover {color: rgb(217, 101, 15);text-decoration: none;}
+
+    th:hover {color: rgb(217, 101, 15);}
+
+   .minmax {min-width:90%; min-height:90%; max-width:90%; max-height:90%;}
+   .HL {background-color: #B0C4DE;}   
+   .tab1 {font-family: "Roboto", "Helvetica", "Arial", sans-serif; font-size: 14px; border-collapse: collapse; margin: 5px;}
+   .tab1 th,.tab1 td {padding: 3px 3px 3px 3px; text-align: left;}
+   .tab1 th {font-size: 15px;}
+  </STYLE>
+<!--   .tab1 {white-space: pre; font-family: "Roboto", "Helvetica", "Arial", sans-serif; font-size: 14px; border-collapse: collapse; margin: 5px;}  -->
+<!-- for border change to- .tab1 th,.tab1 td {padding: 3px 3px 3px 3px; text-align: left;  border: 0.5px dotted gray;} -->
+   
+
+<!-- Script to disable CTRL+F -->
+<!-- window.addEventListener("keydown",function (e) { -->
+<!--          if (e.keycode === 114||(e.ctrlKey && e.keyCode === 70)){ -->
+<!--		alert("Use Search bar to search"); -->
+<!--		document.getElementById("UI").focus();}}) -->
+
+<SCRIPT type="text/javascript">
+
+ function focusInput() {
+	  var i = document.getElementById("UI");
+	  i.focus();
+	  i.select();
+	 }
+
+ window.onload = function (){
+	 focusInput();
+	 
+ }
+
+
+ function alertq() {
+  alert("Created By Visakh R");
+ } 
+
+ function dRec(oDiv) {
+  while (oDiv.hasChildNodes()) {
+   oDiv.removeChild(oDiv.lastChild);
+  }
+ }
+
+ function cRec(oList, cLi) {
+  oList.appendChild(cLi);
+ }
+
+ var wait = 0;
+ var timer;
+ var filter = "";
+
+ function newSrch(input) {
+     var tmp = input.value;
+     if (filter != tmp) {
+         filter = tmp;
+     if (wait > 0) {
+         clearTimeout(timer);
+         timer = setTimeout(function () { newSrch_old(input); }, 100);
+     } else {
+         wait += 1;
+         timer = setTimeout(function () { newSrch_old(input); }, 100);
+     }
+     }
+ }
+
+ function srchclose() {
+var oTab = document.getElementById("t2_body");
+     dRec(oTab);
+     document.getElementById("UI").value="";
+     document.getElementById("t2_head").style.display="none";
+     document.getElementById("div2_h").style.display="none";
+     document.getElementById("spanclose").style.display="none";
+     document.getElementById("lnks").style.right = "";
+     document.getElementById("div2_h").style.position = "relative";
+     document.getElementById("divsrch").style.position = "relative";
+	var i = document.getElementById("UI");
+	  i.focus();
+ }
+
+
+
+ function newSrch_old(input) {
+     var oTab = document.getElementById("t2_body");
+     dRec(oTab);
+     document.getElementById("t2_head").style.display="none";
+     document.getElementById("div2_h").style.display="none";
+     document.getElementById("spanclose").style.display="none";
+     document.getElementById("lnks").style.right = "";
+     document.getElementById("div2_h").style.position = "relative";
+     document.getElementById("divsrch").style.position = "relative";
+
+
+     if (filter !== "" && filter !== " ") {
+         var iTab, iTr, iTrw,  iTd, i=0,j=0;
+         iTab = document.getElementById("t1_body");
+         iTr = iTab.getElementsByTagName("td");
+         iTrw = iTab.getElementsByTagName("tr");
+
+
+         var ReEx = new RegExp((filter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), "ig");
+         var ss, ts, first, last, found = 0, a = ["",""];
+         var oA;
+         var clone;
+         for (i = 0; i < iTr.length; i++) {
+             j = 0; a = ["", ""];
+             var f = found;
+             do {
+                 iTd = iTr[i].getElementsByTagName("a")[j];
+                 if (iTd) {
+                     ss = iTd.innerHTML.toUpperCase();
+                     ts = "";
+                     first = 0;
+                     last = 0;
+                     while ((oA = ReEx.exec(ss)) !== null) {
+                         last = oA.index;
+                         ts += ss.substring(first, last);
+                         ts += '<span class="HL">' + oA[0] + "</span>";
+                         first = ReEx.lastIndex;
+                     }
+                     if (ts) {
+                         ts += ss.substring(first, ss.length);
+                         a[j] = ts;
+                         found++;
+                     }
+                 }
+                 j++;
+             }
+             while (j < 4);
+
+             if (found > f) {
+                 clone =iTr[i].cloneNode(true);
+
+                 if (a[0]) {
+                     clone.getElementsByTagName("a")[0].innerHTML = a[0];
+                 } else if (a[1]) {
+                     clone.getElementsByTagName("a")[1].innerHTML = a[1];
+                 } else if (a[2]) {
+                     clone.getElementsByTagName("a")[2].innerHTML = a[2];
+                 } else if (a[3]) {
+                     clone.getElementsByTagName("a")[3].innerHTML = a[3];
+                 }
+
+                 var tdclone=document.createElement("tr");
+                 tdclone.appendChild(clone);
+                 oTab.appendChild(tdclone);
+             }
+         }
+
+         if (found > 0) {
+             document.getElementById("t2_head").style.display = "";
+             document.getElementById("div2_h").style.display = "";
+             document.getElementById("spanclose").style.display = "";
+             document.getElementById("lnks").style.right = "25%";
+             document.getElementById("div2_h").style.display = "absolute";
+             document.getElementById("divsrch").style.position = "absolute";
+
+         } else {
+             
+         }         
+     }
+ }
+
+</SCRIPT>
+  
+</HEAD>  
+<BODY>
+<!-- BODY link=#330099 vlink=#330099 -->
+
+<DIV class="rndBdr" id="lnks" style="margin: 2px 2px 0px; padding: 6px; left: 0px; top: 0px; text-align: left; bottom: 0px; overflow: hidden; position: absolute; background-color: rgb(0, 177, 236);">
+<TABLE style="margin: 0px; padding: 0px; width: 100%; table-layout: fixed;">
+  <TBODY>
+  <TR style="margin: 0px; padding: 0px; width: 100%;">
+    <TD style="margin: 0px; padding: 0px; height: 20px;">
+      <P style='margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; line-height: 1; font-family: "Roboto", "Helvetica", "Arial", sans-serif; font-size: 22px; font-weight: bold; white-space: nowrap; ' align="center">
+<a target="_parent" href="https://rvisakh.github.io/QuickLinks.html" style="color: rgb(16, 73, 143); text-decoration: none;" title="QUICK LINKS BY VISAKH R">QUICK LINKS</a></P></TD></TR></TBODY></TABLE>
+<DIV class="rndBdr" style="margin: 6px; padding: 0px; left: 0px; top: 32px; text-align: left; right: 0px; bottom: 0px; overflow: hidden; position: absolute; background-color: rgb(255, 255, 255);">
+<DIV class="rndBdr" id="d2" style="margin: 0px; padding: 0px; left: 0px; top: 0px; text-align: left; right: 0px; bottom: 0px; overflow: auto; position: absolute; background-color: rgb(255, 255, 255);">
+
+<table class="tab1" id="t1" style="width:95%">
+<thead id="t1_head"><tr></tr></thead>
+<tbody id="t1_body">
+
+<noscript><div align="center"><font color="red"><b>!!! Please enable Javascript/allow Blocked Content for the Search feature to work !!!</b></font></div></noscript>
+
+
+<!-- EDIT ABOVE CODE ONLY IF YOU KNOW WHAT YOU ARE DOING -->
+
+
+<!-- EDIT LINKS FROM HERE -->
+
+
+
+
+<th><b>IMPORTANT LINKS</b></th>
+<tr>
+<td><a href="https://bank.sbi/" title="SBI Corporate Website">BANK.SBI</a> / <a href="https://sbi.co.in" title="SBI Corporate Website">SBI.CO.IN</a></td>
+<td><a href="https://info.sbi/" title="info.sbi">StateBank Times</a> / <a href="https://statebanktimes.in/sbi/jsp/index.jsp" title="statebanktimes.in">Old Link</a> / <a href="https://info.sbi/wps/portal/sbitimes/sitemap/" title="Sitemap">Sitemap</a></td>
+<td><a href="https://www.onlinesbi.com/" title="OnlineSBI.com">OnlineSBI</a></td>
+<td><a href="https://www.sbiyono.sbi/" title="SBI YONO">SBI YONO</a> / <a href="https://sbiintouch.in/" title="Alternate Link">Alternate Link</a></td>
+</tr>
+
+<tr>
+<td><a href="https://hrms.onlinesbi.com/" title="HRMS Portal">HRMS Portal</a> / <a href="https://hrms.onlinesbi.com/irj/portal" title="Old Version">Old Version</a></td>
+<td><a href="https://outlook.office.com/owa/?realm=sbi.co.in" title="Office365 EMail">Office365 EMail</a> / <a href="https://email.sbi.co.in/" title="Alternate Link : email.sbi.co.in">Alternate Link</a></td>
+<td><a href="https://ecircularweb.sbi.co.in/" title="eCircular site">eCircular </a> / <a href="https://audiobroadcast.statebanktimes.in/" title="eCircular Audio Version">Audio Version</a></td>
+<td><a href="https://mybanklearning.sbi.co.in/" title="eLearning Site">eLearning</a></td>
+</tr>
+
+<tr>
+<td><a href="https://egyanshala.sbi.co.in/" title="SBI eGyanshala">eGyanshala</a></td>
+<td><a href="https://www.sbicard.com/" title="SBI Card">SBI Card</a></td>
+<td><a href="https://www.sbimf.com/en-us" title="SBI Mutual Fund">SBI Mutual Fund</a></td>
+<td><a href="http://www.sbilife.co.in/sbilife/content/home" title="SBI Life">SBI Life</a></td>
+</tr>
+
+<tr>
+<td><a href="http://www.sbigeneral.in/" title="SBI General Insurance">SBI General Insurance</a></td>
+<td><a href="https://www.sbismart.com/" title="SBICap Securities - SBI Smart">SBICap Securities</a></td>
+<td><a href="https://rewardz.sbi/" title="State Bank Rewardz">State Bank Rewardz</a></td>
+<td><a href="https://sbionline.sharepoint.com/sites/sbigitc/SitePages/index.aspx" title="State Bank Global IT Centre - GITC">SBI GITC</a> / <a href="https://gitc.sbi.co.in" title="Old Link">Old Link</a></td>
+</tr>
+
+
+<th><b>FREQUENTLY USED<b></th>
+
+<tr>
+<td><a href="http://10.73.0.201/" title="Top of the World">Reach Top</a> / <a href="http://10.91.112.186/" title="Alternate Link">Alternate Link</a></td>
+<td><a href="https://csvcreator.statebanktimes.in/csvonline/" title="CSV Creator - Online Version">CSV Creator Online</a> / <a href="https://csvcreator.statebanktimes.in/" title="CSV Creator - Download">Download</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/latest.eng/" title="Latest Deposit Interest Rates">Latest Deposit Interest Rates</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/mclr" title="Latest MCLR">Latest MCLR</a></td>
+</tr>
+
+<tr>
+<td><a href="https://protection.office.com/?hash=/quarantine" title="Outlook Quarantine Page">Outlook Quarantine Page</a> / <a href="https://admin.protection.outlook.com/quarantine" title="Old Link">Old Link</a></td>
+<td><a href="https://gmukol.statebanktimes.in/modules.php?name=Card_Rates" title="Currency Rates">Currency Rates</a></td>
+<td><a href="https://remit.onlinesbi.com/branchportal/" title="SBI Global Link Services - GLS">SBI Global Link Services - GLS</a></td>
+<td><a href="https://tf.statebanktimes.in/" title="SBI Trade Finance">SBI Trade Finance</a></td>
+</tr>
+
+
+<tr>
+<td><a href="https://sdmeem.sbi.co.in/contact.htm" title="Contact Details of Service Desk Analysts in GITC">Service Desk GITC Contacts</a> / <a href="https://lhotri.statebanktimes.in/announcements/sd_contact_on_duty.htm" title="Contact Details of Service Desk Analysts in Kerala Circle">Kerala Circle</a></td>
+<td><a href="https://10.209.70.88/TermsNConditions/" title="YONO Terms & Conditions Downlaod / Print">YONO Terms & Conditions</a></td>
+<td><a href="https://istams.statebanktimes.in/" title="iSTAMS - Stationery Management System">iSTAMS - Stationery</a></td>
+<td><a href="https://istams.statebanktimes.in/webhosted/" title="Webhosted Stationery">Webhosted</a> / <a href="https://istams.statebanktimes.in/webhosted/print.aspx" title="Printable Stationery">Printable Stationery</a></td>
+</tr>
+
+<tr>
+<td><a href="https://llmslos.statebanktimes.in/Opas/Home.aspx" title="Online Project Approval System (OPAS)">OPAS</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/manuals.eng/cbsmanual.eng" title="CBS (Core Banking) Manual">CBS (Core Banking) Manual</a></td>
+<td><a href="https://cppd.statebanktimes.in/default_files/publication6.htm" title="Loan Manual">Loan Manual</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/manuals.eng/hrhandbook.eng" title="HR Manual">HR Manual</a></td>
+</tr>
+
+<tr>
+<td><a href="https://retail.onlinesbi.com/personal/reg_forms.html" title="Retail Forms">Retail Forms</a></td>
+<td><a href="https://www.sbi.co.in/portal/web/nri" title="SBI NRI Services">SBI NRI Services</a> / <a href="https://www.sbi.co.in/portal/web/nri/download-forms" title="Download SBI NRI Forms">Forms</a></td>
+<td><a href="http://10.143.8.34/forms/FORMS.htm" title="Various Forms & Registers">Various Forms & Registers</a></td>
+<td><a href="https://pune.statebanktimes.in:8443/Pages/dynamicform.aspx?fname=COS" title="COS Formats - SBILD Pune Site">COS Formats</a></td>
+<tr/>
+
+<tr>
+<td><a href="https://khl.statebanktimes.in/" title="Knowledge Help Line">Knowledge Help Line - KHL</a></td>
+<td><a href="https://radar.statebanktimes.in/radar/" title="Remote Application for Dynamic Assessment of Risk (RADAR)">RADAR - Offsite Audit</a></td>
+<td><a href="http://192.168.123.10:9003/sbigportal/" title="SBI General Bancassuarance">SBI General Bancassuarance</a></td>
+<td><a href="http://10.1.102.28/baonline/content/home" title="SBI Life Bancassuarance">SBI Life Bancassuarance</a></td>
+</tr>
+
+<tr>
+<td><a href="https://onedrive.live.com/about/en-us/signin/" title="Office365 OneDrive">Office365 OneDrive</a></td>
+<td><a href="https://mab-workflow.sbi.co.in/bu/mabhome.html" title="MAB Portal">MAB</a></td>
+<td><a href="https://mobility.onlinesbi.com/" title="SBI Mobility">Mobility - Mobile Banking</a></td>
+<td><a href="https://snc.statebanktimes.in:4443" title="SBI e-Waste Management">e-Waste Management</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/ftp/ITS/SOFTWARE%20DOWNLOADS/Remote%20Software/Ammy3.5.exe" title="Ammyy Admin 3.5">Ammyy Admin v3.5</a> / <a href="https://lhotri.statebanktimes.in/ftp/ITS/SOFTWARE%20DOWNLOADS/Remote%20Software/Ammy3.3.exe" title="Ammyy Admin v3.3">v3.3</a> / <a href="https://lhotri.statebanktimes.in/ftp/ITS/SOFTWARE%20DOWNLOADS/Remote%20Software/Ammy3.2.exe" title="Ammyy Admin v3.2">v3.2</a></td>
+</tr>
+
+<th><b>LOGINS</b></th>
+
+<tr>
+<td><a href="https://servicedesk.sbi.co.in:8443/CAisd/pdmweb2.exe" title="Service Desk">Service Desk Login</a></td>
+<td><a href="https://score.sbi/" title="S Core">S Core</a></td>
+<td><a href="https://itsm.sbi.co.in/arsys" title="SBI IT Service Management - ITSM">SBI IT Service Management - ITSM</a></td>
+<td><a href="https://contactcentre.psg.sbi/CMS/loginsbi.jsp" title="CMS Password Login">CMS Password Login</a> / <a href="https://contactcentre.psg.sbi/CMS/loginbrSSO" title="CMS SSO Login">SSO Login</a></td>
+</tr>
+
+
+<tr>
+<td><a href="https://sso.sbi.co.in" title="SBI Passport (Single Sign On)">SBI Passport / Single Sign On - SSO</a></td>
+<td><a href="https://DCOG.SBI.CO.IN" title="DCOG">DCOG</a></td>
+<td><a href="https://crm.sbi.co.in/" title="CRM Application">CRM Application</a></td>
+<td><a href="https://sbicrs.info.sbi/CRS/" title="Centralized Reporting System - CRS">Centralized Reporting System - CRS</a></td>
+</tr>
+
+<tr>
+<td><a href="https://onlineapply.sbi.co.in/login_lms_loans?redirect=lms-loan" title="OCAS">OCAS</a></td>
+<td><a href="https://ethic.statebanktimes.in/SBIeTHIC/login.htm" title="WBCAS">WBCAS</a></td>
+<td><a href="https://otms.statebanktimes.in/SBIeTHIC/login.htm" title="OTMS (SBI eTHIC)">OTMS (SBI eTHIC)</a></td>
+<td><a href="https://iltt.statebanktimes.in/Pages/Default.aspx" title="ILTT - Income Leakage Tracking Tool">ILTT</a></td>
+</tr>
+
+<tr>
+<td><a href="https://cconline.statebanktimes.in/" title="Currency Chest Online">Currency Chest Online</a></td>
+<td><a href="https://inbintranet.onlinesbi.com/" title="INB Branch Interface Login">INB Branch Login</a> / <a href="https://www.inbintranet.com/" title="Link 2">Link 2</a></td>
+<td><a href="https://mfxbr.sbi.co.in:7002/sbi/" title="MercuryFX">MercuryFX</a></td>
+<td><a href="https://tlm.sbi.co.in:9443/WebConnect" title="TLM WebConnect Login">TLM WebConnect</a> / <a href="http://10.128.9.21:9080/WebConnect/login/login.jsp" title="Old Link">Old Link</a></td>
+</tr>
+
+<tr>
+<td><a href="https://sbillms.statebanktimes.in/LLMS/login.html" title="Loan Lifecycle Management System - LLMS">LLMS</a></td>
+<td><a href="https://potomas.statebanktimes.in/" title="POTOMAS">POTOMAS</a></td>
+<td><a href="https://cmpcashwill.com/forms/frmservlet?config=collprod" title="CMP Cash@Will">CMP Cash@Will</a></td>
+<td><a href="https://bmdars.statebanktimes.in/" title="SBI and e-ABs BankMaster Data Archival and Retrieval System - BMDARS">BMDARS</a></td>
+</tr>
+
+
+<tr>
+<td><a href="https://bscportal.sbi/" title="Branch Server Consolidation - BSC Utility Portal">BSC Utility Portal</a></td> 
+<td><a href="https://darpan.statebanktimes.in/" title="Branch Darpan - Self Assessment by Branches">Branch Darpan</a></td>
+<td><a href="https://csig.statebanktimes.in:8443/CSIG/login/passlogin" title="CSIG - Centralised SIG">CSIG - Centralised SIG</a> / <a href="https://10.191.133.12:8443/CSIG/login/passlogin" title="CSIG - Centralised SIG">Link 2</a></td> 
+<td><a href="https://eregister.statebanktimes.in/" title="Branch e-Register">Branch e-Register</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://itrams.statebanktimes.in/Login.aspx" title="iTRAMS - Training Management System">iTRAMS - Training</a></td>
+<td><a href="https://workflow.sbi/EDAC/" title="e-DAC">e-DAC</a></td>
+<td><a href="https://workflow.sbi/PLW/Security/login.html" title="Pre LCPC Workflow">Pre LCPC Workflow</a></td>
+<td><a href="https://sbisecurity.statebanktimes.in/RAM/" title="Risk Assessment Matrix">Risk Assessment Matrix</a></td>
+</tr>
+
+<tr>
+<td><a href="https://sbionline.sharepoint.com/sites/smartdoc/easyapproval/SitePages/Main1.aspx" title="Easy Approval">Easy Approval</a></td>
+<td><a href="https://sbisecurity.statebanktimes.in/branch-security/" title="Online Security Audit">Online Security Audit</a></td>
+<td><a href="https://istams.statebanktimes.in/app/" title="iSTAMS Login">iSTAMS Login</a></td>
+<td><a href="https://stationery.mtlpms.com/" title="Manipal - Stationery Management System">Manipal - Stationery Management</a></td>
+</tr>
+
+<tr>
+<td><a href="https://tbu.info.sbi/login.aspx" title="Electoral Bond Daily Report">Electoral Bond Daily Report</a></td>
+<td><a href="https://bpts.statebanktimes.in/" title="BPTS - Branch Performance Tracking System">BPTS</a></td>
+<td><a href="http://10.189.38.149/rmpbnew/" title="RMPB Login Module">RMPB Login Module</a></td> 
+<td><a href="https://emm.sbi.co.in/mydevice" title="EMM Self Service">EMM Self Service</a></td>
+</tr>
+
+<tr>
+<td><a href="https://bmmc.statebanktimes.in/" title="e-BMMC">e-BMMC</a></td>
+<td><a href="https://sbigrc.com:8443/GCRMS/" title="Green Remit Card">Green Remit Card</a></td>
+<td><a href="https://fastag.onlinesbi.com/BranchAdmin/login" title="SBI FasTag Branch Admin">SBI FasTag Branch Admin</a></td> 
+<td><a href="https://lositrb.onlinesbi.com/CSPVisits/" title="CSP Visit Recording and Monitoring">CSP Visits</a> / <a href="https://10.189.47.100/csp_visit/" title="Link 2">Link 2</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://achweb.statebanktimes.in/" title="NACH Mandate Management">NACH Mandate Management</a></td> 
+<td><a href="http://10.206.6.46:84/frmlogin.aspx" title="Online Submission for Vigilance Clearance">Vigilance Clearance Online</a></td> 
+<td><a href="https://sbiofsaa.statebanktimes.in/ofsaa" title="ORAA - Operational Risk Analytical Application">ORAA - Operational Risk Analytical Application</a></td>
+<td><a href="https://iccomssws.rbi.org.in/ICCOMSApp/" title="RBI Integrated Computerised Currency Operations & Management System - ICCOMS">RBI ICCOMS Login</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://rbstranche.sbi.co.in/corp/login.htm" title="RBS Tranche Portal">RBS Tranche Portal</a></td>
+<td><a href="https://rbiekuberfo.in/CUPWeb/" title="e-Kuber Login">eKuber Login</a></td> 
+<td><a href="https://emmtkt.sbi.co.in/" title="SBI Ticket Management System">SBI Ticket Management System</a></td>
+<td><a href="https://edmsbpr.statebanktimes.in/" title="Electronic Document Management System">Electronic Document Management System</a></td>
+</tr>
+
+<tr>
+<td><a href="https://glif.info.sbi/" title="GLIF Monitoring System">GLIF Monitoring System</a></td>
+<td><a href="https://itnp.sbi.co.in/cvs/" title="Controllers Visit System">Controllers Visit System</a></td>
+<td><a href="https://cdkrmsl.statebanktimes.in/SBI" title="Cheque Deposit Kiosk - LIPI">Cheque Deposit Kiosk - LIPI</a></td>
+<td><a href="https://cdkrmsa.statebanktimes.in/" title="Cheque Deposit Kiosk - AurionPro">Cheque Deposit Kiosk - AurionPro</a></td>
+</tr>
+
+<tr>
+<td><a href="https://sbilitmas.com/home/" title="SBI LITMAS - Litigation Management System">SBI LITMAS</a></td> 
+<td><a href="https://ccr.statebanktimes.in/Home.aspx" title="Counterfiet Currency Reporting - CCR">Counterfiet Currency Reporting - CCR</a></td> 
+<td><a href="https://itbudget.statebanktimes.in/itbeta/" title="IT Budgeting and Expenditure Tracking Application">IT Budgeting and Expenditure Tracking</a></td> 
+<td><a href="https://erms.sbi.co.in/" title="Exception Reports Monitoring System">Exception Reports Monitoring System</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://siportal.sbi.co.in/" title="eKYC Page">eKYC Page</a> / <a href="https://siportal.sbi.co.in/ekyctest.html" title="Test Page">Test Page</a></td>
+<td><a href="https://iadappinfo.sbi/" title="IAD">IAD</a></td>
+<td><a href="https://app.dbt.sbi:1357/" title="Direct Benefit Transfer -DBT">Direct Benefit Transfer - DBT</a></td>
+<td><a href="https://adfs.sbi.co.in/adfs/portal/updatepassword" title="Update ADS/Office365 EMail Password">Update ADS/EMail Password</a></td>
+</tr>
+
+<tr>
+<td><a href="https://modoarps.statebanktimes.in/OARPS/" title="Credit Audit Report Processing System">Credit Audit Report Processing System</a></td>
+<td><a href="https://itrisk.sbi.co.in/rm/" title="IT Risk Portal">IT Risk Portal</a></td>
+<td><a href="https://gatepass.gitc/" title="GITC Gatepass">GITC Gatepass</a></td>
+<td><a href="https://sbtracs.statebanktimes.in/" title="SBTRACS - State Bank Training Content Service">SBTRACS</a></td>
+</tr>
+
+<tr>
+<td><a href="https://rlms.sbi/" title="RLMS  - Retail Loan Management System">RLMS - Retail Loan Management System</a></td>
+<td><a href="https://fms.sbi/" title="Facility Management System">Facility Management System</a></td>
+<td><a href="https://dmscc.sbi.co.in/" title="Dak Management System">Dak Management System</a></td>
+<td><a href="http://10.189.38.149/lockersoftware/" title="Locker Module">Locker Module</a></td>
+</tr>
+
+<tr>
+<td><a href="https://pm.statebanktimes.in/EPM" title="EPM Portal">EPM Portal</a></td>
+<td><a href="https://10.189.37.29/SPICS/Common/home.aspx" title="SPICS">SPICS</a></td>
+<td><a href="http://10.189.36.240:8441/Login.aspx" title="BRMS">BRMS</a></td>
+<td><a href="http://10.189.36.240:8442/Login.aspx" title="SDMS">SDMS</a></td>
+</tr>
+
+<tr>
+<td><a href="https://parivartan.sbilife.co.in/" title="Parivartan - SBI Life Service Portal">Parivartan - SBI Life</a></td>
+<td><a href="https://secure.sbigeneral.in/ticket/auth/login" title="Nivaran - SBI General Service Portal">Nivaran - SBI General</a></td>
+<td><a href="https://mitra.sbimf.com/user-login" title="Mitra - SBI Mutual Fund Service Portal">Mitra - SBI Mutual Fund</a></td>
+<td><a href="https://sbiconnect.sbicard.com/creditcards/b2b/user/login" title="SBI Card Connect">SBI Card Connect</a> / <a href="https://www.sbicardconnect.com/log-in/" title="Alternate Link">Link 2</a></td>
+</tr>
+
+<tr>
+<td><a href="https://ads.statebanktimes.in/" title="ADS Self Service">ADS Password Reset / Self Service</a></td>
+<td><a href="https://analytics.statebanktimes.in/analytics_web/reports.jsp?dashboard=ovvr" title="Intelligent OVVR Checking">Intelligent OVVR Checking</a></td>
+</tr>
+
+<th><b>ENQUIRIES<b></th>
+
+<tr>
+<td><a href="https://misonline.statebanktimes.in/main.html" title="MIS Online">MIS Online</a> / <a href="https://misonlinenew.statebanktimes.in/" title="New Version">New Version</a></td>
+<td><a href="https://infomix.statebanktimes.in/" title="InfoMix - Whole Bank MIS">InfoMix</a></td>
+<td><a href="https://projectganga.statebanktimes.in/Default.aspx" title="Centralized Project Ganga">Centralized Project Ganga</a></td>
+<td><a href="https://misonline.statebanktimes.in/BranchLocator.html" title="Branch Locator (through MISOnline)">Branch Locator - MISOnline</a> / <a href="https://www.sbi.co.in/portal/web/home/branch" title="Branch Locator (through on SBI.co.in)">SBI.co.in</a></td>
+</tr>
+
+<tr>
+<td><a href="https://atmialerts.onlinesbi.com:7002/" title="ATM iALERTS">ATM iALERTS</a></td>
+<td><a href="https://atmialerts.onlinesbi.com:7002/Home/CardStatus" title="ATM Card Status/Tracking">ATM Card Status</a> / <a href="http://10.209.64.238:7027/cms/SearchCustomerInfo.jsp" title="Alternate Link">Link 2</a> / <a href="https://dcmssbi.statebanktimes.in:7017/cms/mainCardTracking.jsp" title="Old Tracking Site 3">3</a> / <a href="http://10.0.1.102:9090/CARD_Tracking/card_tracking_home.jsp" title="Old Tracking Site 4">4</a></td>
+<td><a href="https://atmweb.onlinesbi.com:8080/ATMWEB/index.jsp" title="ABOSS - ATM Web">ABOSS - ATM Web</a></td>
+<td><a href="https://atmialerts.onlinesbi.com:7002/Home/ATMWebLogs" title="ATM Logs">ATM Logs</a> / <a href="https://atmej.statebanktimes.in/index.jsp" title="ATM EJ Viewer">ATM EJ Viewer</a></td>
+</tr>
+
+<tr>
+<td><a href="https://iph.statebanktimes.in:9001/SBIRTGS" title="RTGS Enquiry">RTGS Enquiry</a> / <a href="https://10.189.205.166:9001/SBIRTGS" title="Link 2">Link 2</a> / <a href="https://10.189.205.167:9001/SBIRTGS" title="Link 3">3</a> / <a href="http://10.0.22.115/rtgs/" title="RTGS Enquiry - Old Link">Old Link</a></td>
+<td><a href="https://iph.statebanktimes.in:9001/SBINEFT/" title="NEFT Enquiry">NEFT Enquiry</a> / <a href="https://10.189.205.166:9002/SBINEFT/" title="Link 2">Link 2</a> / <a href="https://10.189.205.167:9002/SBINEFT/" title="Link 3">3</a>  / <a href="https://10.189.205.166:9001/SBINEFT/" title="Link 4">4</a> / <a href="http://10.4.226.7:8080/PHUB/" title="Old NEFT Enquiry">Old Link</a></td>
+<td><a href="https://10.0.32.111/" title="STEPS - PHUB - Payment Systems Group">STEPS - PHUB</a>  / <a href="http://10.0.1.136/" title="Old PHUB Site">Old Link</a></td>
+<td><a href="https://iph.statebanktimes.in:9001/SBIIMPS/" title="IMPS Enquiry">IMPS Enquiry</a> / <a href="http://10.0.12.206/IMPS/" title="Link 2">Link 2</a></td>
+</tr>
+
+<tr>
+<td><a href="https://workflow.sbi/LCPCChqBkDispatch/" title="Cheque Book Enquiries">Cheque Book Dispatch Status</a></td>
+<td><a href="https://workflow.sbi/LCPCAofPendency/" title="AOF Pendency">AOF Pendency</a></td>
+<td><a href="https://workflow.sbi/GNC/" title="Global NRI Centre AOF Dashboard">Global NRI Centre AOF Dashboard</a></td>
+<td><a href="https://sbickyc.sbi/AOFDashboard/Dashboard.html" title="Pre LCPC AOF Printing Dashboard">Pre LCPC AOF Printing Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://biddepmaster.statebanktimes.in/depositMaster/" title="Deposit Master">Deposit Master</a></td>
+<td><a href="https://prepaid.gitc/prepaidhome.asp" title="Prepaid Card Enquiry">Prepaid Card Enquiry</a> / <a href="http://10.4.226.134/ftcrecon/prepaidhome.asp" title="Old Link">Old Link</a></td>
+<td><a href="https://almonline.statebanktimes.in/" title="Interest Rate History - Asset Liability Management Dept">Interest Rate History</a> / <a href="https://10.1.13.18/" title="Alternate Link">Link 2</a></td>
+<td><a href="https://dashboard.hrmsgitc/EmployeeSearch" title="Staff Locator / Employee Search">Staff/Employee Search</a> / <a href="https://dashboard.hrmsgitc/FRMstaff.aspx" title="Old Link">Old Link</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lositrb.onlinesbi.com/LOSITRB/FIDashboard/Performance.aspx?start=0" title="FI Account Opening Dashboard">FI Account Opening Dashboard</a></td>
+<td><a href="http://dgft.delhi.nic.in:8100/dgft/IecPrint" title="IEC Enquiry - DGFT">IEC Enquiry - DGFT</a> / <a href="https://icegate.gov.in/EnqMod/" title="IEC Enquiry - IceGate">IceGate</a></td>
+<td><a href="http://dgftebrc.nic.in:8100/BRCQueryTrade/index.jsp" title="eBRC Enquiry">eBRC Enquiry</a></td>
+<td><a href="https://mudra.statebanktimes.in/home.aspx" title="Pradhan Mantri Mudra Yojana - PMMY">Mudra - PMMY</a></td>
+</tr>
+
+<tr>
+<td><a href="https://smegyan.sbi/" title="SME Gyan">SME Gyan</a></td>
+<td><a href="https://yonodashboard.statebanktimes.in/" title="YONO Dashboard 1">YONO Dashboard - 1</a> / <a href="https://yonodashboard2a.statebanktimes.in/yonoProject/" title="YONO Dashboard 2">2</a></td>
+<td><a href="https://sbickyc.sbi/CKYCDashboard/" title="CKYC Dashboard">CKYC Dashboard</a></td>
+<td><a href="https://digital.statebanktimes.in/" title="INB Dashboard">INB Dashboard</a> / <a href="https://inbintranet.onlinesbi.com//reportserver/reportinput.htm" title="INB Reports">INB Reports</a> / <a href="https://www.inbintranet.com/reportserver/reportinput.htm" title="INB Reports - Link 2">Link 2</a></td>
+</tr>
+
+<tr>
+<td><a href="https://shgdashboard.statebanktimes.in/shg_renewal/faces/new_home.jsp" title="SHG Renewal Dashboard">SHG Renewal Dashboard</a></td>
+<td><a href="https://bscmigration.sbi/welcome" title="Branch Server Consolidation - BSC Migration Portal">BSC Migration Portal</a>  </td>
+<td><a href="https://onlineweekly.statebanktimes.in/default.aspx" title="Weekly Default Codes">Weekly Default Codes</a></td>
+<td><a href="https://teplleads.statebanktimes.in/" title="Tatkal E-Personal Loan Leads">Tatkal E-Personal Loans</a></td>
+</tr>
+
+<tr>
+<td><a href="https://onlineapply.sbi.co.in/reports/report.htm" title="OCAS Reports">OCAS Reports</a></td>
+<td><a href="https://ioa.statebanktimes.in/" title="IBTS Entries Report">IBTS Entries Report</a></td>
+<td><a href="https://www.sbi.co.in/portal/web/nri/swift-codes" title="SWIFT Codes">SWIFT Codes</a></td>
+<td><a href="https://iph.statebanktimes.in:9002/SBISWIFT" title="SWIFT INR Enquiry">SWIFT INR Enquiry</a>  </td>
+</tr>
+
+<tr>
+<td><a href="https://iph.statebanktimes.in:9001/SBIMISC" title="MISC (LC, BG, MUREX) Enquiry">MISC (LC, BG, MUREX) Enquiry</a>  </td>
+<td><a href="https://lhotri.statebanktimes.in/achdbnew/" title="ACH Debit Clearing - Trivandrum Circle">ACH Debit Clearing</a> / <a href="https://lhotri.statebanktimes.in/ACHdb" title="Old Link">Old Link</a> / <a href="https://lhotri.statebanktimes.in/ACHdbforlegacyECS" title="Link 3">Link 3</a></td>
+<td><a href="https://datait-infringement.statebanktimes.in/" title="Data IT Infringement Portal">Data IT Infringement Portal</a></td>
+<td><a href="https://siportal.sbi.co.in/AADHAAR_ENQUIRY/AadhaarLookup.aspx" title="Aadhar Enquiry">Aadhar Enquiry</a></td>
+</tr>
+
+<tr>
+<td><a href="https://mobility.onlinesbi.com/sbumis/impsSearch.htm?loginFlag=preLogin" title="IMPS RRN/TID Search">IMPS RRN/TID Search</a></td>
+<td><a href="https://contactcentre.statebanktimes.in/" title="Contact Centre">Contact Centre</a> / <a href="https://10.0.222.197:5003/KMS_/KMSBU" title="Link 1">Link 1</a> / <a href="https://10.0.22.141:5003/KMS_/KMSBU" title="Link 2">Link 2</a></td>
+<td><a href="ftp://10.128.9.135/FXOUT/" title="FxOut Reports" onclick="alert('Username : fdr \nPassword : fdr123');">FxOut Reports</a></td>
+<td><a href="https://bidprojshikhar.statebanktimes.in/projectShikhar/" title="Project Shikhar">Project Shikhar</a></td>
+</tr>
+
+<tr>
+<td><a href="https://misonline.statebanktimes.in/rank/md/score.php" title="MD Ranking Scoreboard">MD Ranking Scoreboard</a></td>
+<td><a href="https://rooprekha.statebanktimes.in/" title="Roop Rekha for $5 Trillion Economy">Roop Rekha</a></td>
+<td><a href="https://bulksmshub.sbi.co.in:8443/" title="CBS SMS Status - SMS Seva">CBS SMS Status - SMS Seva</a> / <a href="https://cbdev.statebanktimes.in/SMS_Status.aspx" title="Alternate Site Link">Link 2</a></td>
+<td><a href="ftp://10.250.148.117/PLW_Reports/" title="Pre LCPC Reports FTP Link">Pre LCPC Reports FTP Link</a></td>
+</tr>
+
+<tr>
+<td><a href="https://btvad.sbi.co.in:9443/CBInsights/" title="Branch Transaction Velocity Anomalies Detector - BTVAD">BTVAD</a></td>
+</tr>
+
+<th><b>DASHBOARDS<b></th>
+
+<tr>
+<td><a href="https://preview.statebanktimes.in/" title="P Review Dashboard">P Review Dashboard</a></td>
+<td><a href="https://sbigreensight.statebanktimes.in/dashboard/gccTxnDetails" title="GCC/GRC - Green Channel Dashboard">GCC/GRC Green Channel Dashboard</a></td>
+<td><a href="https://cgtmsedashboard.statebanktimes.in/Home.aspx" title="CGTMSE Dashboard">CGTMSE Dashboard</a></td>
+<td><a href="https://10.189.34.141:8443/APY_Dashboard/dashboard.jsp" title="Atal Pension Yojana Dashbard">APY Dashboard</a>  </td>
+</tr>
+
+<tr>
+<td><a href="https://forexdashboard.statebanktimes.in/" title="Forex Dashboard">Forex Dashboard</a></td>
+<td><a href="https://mcspdashboard.statebanktimes.in/" title="Salary Package Accounts Dashboard">Salary Package Dashboard</a>  </td>
+<td><a href="https://npadashboard.statebanktimes.in/" title="NPA Dashboard">NPA Dashboard</a>  </td>
+<td><a href="https://fcradata.statebanktimes.in/Summary.aspx" title="FCRA Dashboard">FCRA Dashboard</a>  </td>
+</tr>
+
+<tr>
+<td><a href="https://misonline.statebanktimes.in/bu_dashboard/dash1/index.php" title="SBI Business Dashboard">Business Dashboard</a></td>
+<td><a href="https://fip_dashboard.statebanktimes.in/" title="Financial Inclusion Dashboard">Financial Inclusion Dashboard</a></td>
+<td><a href="https://pmjjby.statebanktimes.in/Home.aspx" title="PMJJBY & PMSBY Dashbard">PMJJBY & PMSBY Dashboard</a></td>
+<td><a href="https://monsooncampaign.statebanktimes.in/" title="PPF/SSA Dashboard">PPF/SSA Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://staffrating.statebanktimes.in" title="Branch/Staff Rating Dashboard">Branch/Staff Rating Dashboard</a></td>
+<td><a href="https://trainings.statebanktimes.in/" title="Training Dashboard">Training Dashboard</a>  </td>
+<td><a href="https://10.189.38.59/UPIAdminDashboard/getTransSearch" title="UPI - BHIM SBI PAY Dashboard">UPI BHIM SBI PAY Dashboard</a>  </td>
+<td><a href="https://swayamdashboard.statebanktimes.in/metaData/OverallV2.html" title="SWAYAM Dashboard">SWAYAM Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://nominationdashboard.statebanktimes.in/" title="Nomination Dashboard">Nomination Dashboard</a>  </td>
+<td><a href="https://bidatmdashboard.statebanktimes.in/bidAtmProject/index.jsp" title="ATM Dashboard">ATM Dashboard</a></td>
+<td><a href="https://nridashboard.statebanktimes.in/" title="NRI Dashboard">NRI Dashboard</a></td>
+<td><a href="https://pensionbidashboard.statebanktimes.in/pensionDtl/pension.jsp" title="Pension Dashboard">Pension Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://msmedashboard.statebanktimes.in/" title="MSME Dashboard">MSME Dashboard</a></td>
+<td><a href="https://misonline.statebanktimes.in/RmmeDash/index.php" title="RMME/RMSE Monitoring Dashboard">RMME/RMSE Monitoring Dashboard</a></td>
+<td><a href="https://sbirinn.statebanktimes.in/" title="RINN Samadhan Dashboard">RINN Samadhan Dashboard</a></td>
+<td><a href="https://expcrdashboard.statebanktimes.in/credit_export/faces/circle.jsp" title="Export Credit Dashboard">Export Credit Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://digitaldashboard.statebanktimes.in/digitalBid/" title="Digital Dashboard">Digital Dashboard</a></td>
+<td><a href="https://downtimemis.statebanktimes.in/" title="Downtime Dashboard">Downtime Dashboard</a></td>
+<td><a href="https://downtimemis.statebanktimes.in/Default.aspx?qsHome=Y&&qsService=ATM" title="ATM/CDM/Recycler Downtime Dashboard">ATM/CDM/Recycler Downtime Dashboard</a></td>
+<td><a href="https://cashretention.statebanktimes.in/" title="Cash Retention Dashboard">Cash Retention Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://matmkiosk.onlinesbi.com/MicroAtmPortal/" title="Micro ATM Dashboard">Micro ATM Dashboard</a></td>
+<td><a href="https://bidlocker.statebanktimes.in/lockerMaster/" title="Locker Dashboard">Locker Dashboard</a></td>
+<td><a href="https://cfdldashboard.statebanktimes.in" title="CFDL Dashboard">CFDL Dashboard</a></td>
+<td><a href="https://abalcampaign.statebanktimes.in/" title="ABAL Campaign Dashboard">ABAL Campaign Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://kccren.statebanktimes.in/kccrenewal/circle.jsf" title="KCC Renewal Dashboard">KCC Renewal Dashboard</a></td>
+<td><a href="https://gad_data.statebanktimes.in/" title="Goverment Business Dashboard">Goverment Business Dashboard</a></td>
+<td><a href="https://misonline.statebanktimes.in/bpts/index.php" title="BPTS (Branch Performance Tracking System) Dashboard (CEEP Monitoring)">BPTS Dashboard</a></td>
+<td><a href="https://bidcanocstatus.statebanktimes.in/currentaccountNoc/" title="Current Account NOC Status Dashboard">Current Account NOC Status Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://vvqstatus.statebanktimes.in/" title="VVQ Checking Status - VVQ Dashboard">VVQ Dashboard</a></td>
+<td><a href="https://vvrreports.statebanktimes.in/" title="Online VVR Checking Report - VVR Dashboard">VVR Dashboard</a></td>
+<td><a href="https://cpm.statebanktimes.in" title="CPM Dashboard">CPM Dashboard</a></td>
+</tr>
+
+<th><b>WEB LINKS<b></th>
+
+<tr>
+<td><a href="https://www.rbi.org.in" title="Reserve Bank of India">Reserve Bank of India - RBI</a></td>
+<td><a href="https://sbitravelcard.com/" title="SBI Foreign Travel Money Card">SBI Foreign Travel Card</a></td>
+<td><a href="https://homeloans.sbi/" title="SBI Home Loans">SBI Home Loans</a></td>
+<td><a href="https://www.sbirealty.in/" title="SBI Realty">SBI Realty</a></td>
+</tr>
+
+<tr>
+<td><a href="https://fastag.onlinesbi.com/" title=SBI FASTAG">SBI FASTAG</a></td>
+<td><a href="https://www.pensionseva.sbi/" title="SBI PensionSeva">SBI PensionSeva</a></td>
+<td><a href="https://vahan.nic.in" title="Vahan.nic.in">Vahan.nic.in</a></td>
+<td><a href="http://keralamvd.gov.in/" title="Kerala Motor Vehicles Department">Kerala Motor Vehicles Dept</a></td>
+</tr>
+
+<tr>
+<td><a href="https://www.crisilratings.com/RatingAN/login" title="CRISIL Rating Analytics">CRISIL Rating</a></td>
+<td><a href="https://www.cersai.org.in/" title="CERSAI">CERSAI</a></td>
+<td><a href="http://cibil.com/" title="CIBIL">CIBIL</a> / <a href="https://consumer.cibil.com/" title="CIBIL - Consumer Login">Consumer Login</a></td>
+<td><a href="https://www.crifhighmark.com/" title="CRIF High Mark">CRIF High Mark</a> / <a href="https://hub.crifhighmark.com/Inquiry/Inquiry/login.action" title="CRIF Login">CRIF Login</a></td>
+</tr>
+
+<tr>
+<td><a href="http://www.indiapost.gov.in/" title="India Post Website">India Post</a></td>
+<td><a href="http://www.indianrail.gov.in/" title="Indian Railways">Indian Railways</a></td>
+<td><a href="https://www.irctc.co.in/" title="IRCTC - Ticket Booking">IRCTC</a></td>
+<td><a href="http://iibf.org.in/" title="IIBF">IIBF</a></td>
+<tr/>
+
+<tr>
+<td><a href="https://www.vidyalakshmi.co.in/Students/" title="VidyaLakshmi Portal">VidyaLakshmi Portal</a></td>
+<td><a href="https://etreasury.kerala.gov.in/" title="eTreasury Kerala">eTreasury Kerala</a></td>
+<td><a href="http://dgft.gov.in/" title="DGFT">DGFT</a></td>
+<td><a href="https://www.fxretail.co.in/" title="FX Retail Platform">FX Retail Platform</a></td>
+</tr>
+
+<tr>
+<td><a href="https://portal2.bsnl.in/myportal/" title="BSNL Portal">BSNL Portal</a></td>
+<td><a href="https://portal.office.com/" title="Office 365 Portal">Office 365 Portal</a></td>
+<td><a href="https://www.bing.com/" title="Bing.com">Bing</a></td>
+<td><a href="https://www.google.com/" title="Google.com">Google</a></td>
+</tr>
+
+<tr>
+<td><a href="http://electoralsearch.in/" title="Voter ID Details">Voter ID Details</a></td>
+<td><a href="https://www.psbloansin59minutes.com/sbi" title="Contactless Lending Platform (CLP) - SBI">Contactless Lending Platform - CLP</a></td>
+<td><a href="https://eshakti.nabard.org/" title="EShakti">EShakti</a></td>
+<td><a href="https://pmfby.gov.in/" title="Pradhan Mantri Fasal Bima Yojana - PMFBY">PMFBY</a></td>
+</tr>
+
+
+<th><b>LHO TRIVANDRUM LINKS<b></th>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in" title="LHO Trivandrum">LHO Trivandrum</a></td>
+<td><a href="https://lhotri.statebanktimes.in/ITS/" title="ITS Trivandrum">ITS Trivandrum</a></td>
+<td><a href="https://lhotri.statebanktimes.in/ftp/REFERENCE/" title="ITS Knowledge Base">ITS Knowledge Base</a> / <a href="ftp://10.212.42.37/REFERENCE/" title="Old Link">Old Link</a></td>
+<td><a href="https://lhotri.statebanktimes.in:8004/SBLC/Index.aspx" title="SBILD Kochi">SBILD Kochi</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/MBPM/" title="MBPM Departmentt">MBPM Dept</a></td>
+<td><a href="https://lhotri.statebanktimes.in/ecirculars.php" title="LHO eCirculars">LHO eCirculars</a></td>
+<td><a href="https://lhotri.statebanktimes.in/itslhotvmtools.php" title="ITS Tools">ITS Tools</a></td>
+<td><a href="https://lhotri.statebanktimes.in/ftp/ITS/ITS_SCRIPTS/" title="ITS Scripts">ITS Scripts</a></td>
+</tr>
+
+<tr>
+<td><a href="http://10.213.212.181/npanew/" title="NPA Site">NPA Site</a></td>
+<td><a href="https://lhotri.statebanktimes.in/stgovt/index.php" title="FSLO Trivandrum">FSLO Trivandrum</a></td>
+<td><a href="https://lhotri.statebanktimes.in/wps_support/index.php" title="Wage Protection System - WPS">Wage Protection System - WPS</a></td>
+<td><a href="https://lhotri.statebanktimes.in/D&TB/index.html" title="Digital & Transaction Banking Department">Digital & Transaction Banking</a></td>
+</tr>
+
+<tr>
+<td><a href="https://ctstvm1.statebanktimes.in:8443/" title="CTS Web Inward">CTS Web Inward</a></td>
+<td><a href="https://ctstvm2out.statebanktimes.in/" title="CTS Web Outward">CTS Web Outward</a></td>
+<td><a href="http://10.213.213.213/" title="Dimension Data - Previously Datacraft - State Bank Connect Kerala Team">Dimension Data (Datacraft)</a></td>
+<td><a href="http://its.sbtr.in/" title="eSBT ITS Intranet Portal (32 Site)">eSBT ITS Portal (32 Site)</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/wps_support/" title="Wage Protection System">Wage Protection System</a></td>
+<td><a href="https://lhotri.statebanktimes.in:8004/ABU/AgriIS/" title="Agri Interest Subvention - Trivandrum Circle">Agri Interest Subvention</a></td>
+<td><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=NSLb-1B_CUW0B8WDJewnqMenihCjZj5ApDt0NRI_ughUNFg3UzdXSVU2QlpER0FFVzhUR0xYRkhPUi4u" title="NW I Operational Issues Daily Reporting">NW I Operational Issues Daily Reporting</a></td>
+<td><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=NSLb-1B_CUW0B8WDJewnqMenihCjZj5ApDt0NRI_ughUMlMwSzFSQ0FISkI4N1g4TTg3T0UyTVM3WC4u" title="DTB Daily Reporting Dashboard">DTB Daily Reporting Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/CPPC/index.html" title="CPPC Trivandrum">CPPC Trivandrum</a></td>
+<td><a href="https://lhotri.statebanktimes.in/lcpc/lcpc.php" title="LCPC Ernakulam">LCPC Ernakulam</a> / <a href="ftp://10.214.127.36/" title="LCPC Ernakulam FTP Link">FTP Link</a></td>
+<td><a href="https://lhotri.statebanktimes.in/NewPages/CCPC.html" title="CCPC Trivandrum">CCPC Trivandrum</a></td>
+<td><a href="https://lhotri.statebanktimes.in/Dept_Contacts.htm" title="Trivandrum LHO Departments Contact Directory">Trivandrum LHO Dept Contact Directory</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/ITS/VVR/vvrsumstat.php" title="Trivandrum Circle VVQ Status">Trivandrum Circle VVQ Status</a></td>
+<td><a href="https://dcog.sbi.co.in/docs/NOEODSIGNAL_04282.txt" title="Trivandrum Circle EOD Status">Trivandrum Circle EOD Status</a></td>
+</tr>
+
+<th><b>STAFF / HRMS RELATED<b></th>
+<tr>
+<td><a href="https://hrms.onlinesbi.com/irj/portal" title="HRMS Portal">HRMS Portal</a></td>
+<td><a href="https://dashboard.hrmsgitc/EmployeeSearch" title="Staff Locator / Employee Search">Staff Locator</a> / <a href="https://dashboard.hrmsgitc/FRMstaff.aspx" title="Old Link">Old Link</a></td>
+<td><a href="https://lhotri.statebanktimes.in/hrms_new/TOOLKIT/menu.php" title="HRMS Toolkit - Kerala Circle">HRMS Kerala - Toolkit</a></td>
+<td><a href="https://dashboard.hrmsgitc/" title="HRMS Dashboard">HRMS Dashboard</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/hrms_new/hrms" title="HRMS - Kerala Circle">HRMS Kerala</a></td>
+<td><a href="https://emphistory.hrmsgitc" title="SBI Saksham">SBI Saksham</a></td>
+<td><a href="https://sanjeevani.hrmsgitc/SBI/index" title="Sanjeevani - HR Helpline">Sanjeevani - HR Helpline</a></td>
+<td><a href="https://aspirations.bank.sbi/wps/portal/" title="SBI Aspirations">SBI Aspirations</a> / <a href="https://social.bank.sbi/" title="SBI Social">SBI Social</a> / <a href="https://social.bank.sbi/files/app" title="SBI Social - Files">Files</a></td>
+</tr>
+
+<tr>
+<td><a href="https://mybanklearning.sbi.co.in/" title="eLearning Site">eLearning</a></td>
+<td><a href="https://elearning.crm.sbi.co.in/" title="CRM eLearning">CRM eLearning</a></td>
+<td><a href="https://10.206.101.28/el/" title="eLearning - Alternate INTRANET Site">eLearning - Alternate INTRANET Site</a></td>
+<td><a href="https://eltest1.sbi.co.in/" title="eLearning Test Site">eLearning Test Site</a> / <a href="https://eltest.sbi.co.in/" title="Old Link">Old Link</a></td>
+</tr>
+
+<tr>
+<td><a href="https://10.206.101.26/ml/" title="eLearning Dashboard">eLearning Dashboard</a></td>
+<td><a href="https://sbi.myhmm.org/" title="Harvard ManageMentor - HMM">Harvard ManageMentor - HMM</a></td>
+<td><a href="https://sakshamicds.statebanktimes.in/Login.aspx" title="Career Developement System">Career Developement System</a></td>
+<td><a href="https://saksham2hrms.statebanktimes.in/jobfamily/" title="Job Family">Job Family</a></td>
+</td>
+</tr>
+
+<tr>
+<td><a href="https://salarydata.hrmsgitc/" title="HRMS Salary Data Correction Site">HRMS Salary Correction Site</a> 
+<td><a href="https://hrmsreports.statebanktimes.in" title="HRMS Reports">HRMS Reports</a></td>
+<td><a href="https://hrmsreports.statebanktimes.in/pay" title="HRMS Reports PAY">HRMS Reports PAY</a></td>
+<td><a href="https://lhotri.statebanktimes.in:8005/ContactList/pages/search.htm" title="Kerala Circle Contact List">Kerala Circle Contact List</a></td>
+</tr>
+
+<tr>
+<td><a href="https://stu.statebanktimes.in/stu/certification" title="Role Based Certifications">Role Based Certifications</a></td>
+<td><a href="https://stu.statebanktimes.in/" title="Strategic Training Unit">Strategic Training Unit - STU</a></td>
+<td><a href="https://10.189.38.55:8443/" title="SBILD Aurangabad">SBILD Aurangabad</a></td>
+<td><a href="http://10.198.158.39/index.html" title="SBILD Trichy (Tiruchirappalli)">SBILD Trichy</a></td>
+</tr>
+
+<tr>
+<td><a href="https://sbionline.sharepoint.com/sites/CSDB" title="Case Study Discussion Board">Case Study Discussion Board</a></td>
+<td><a href="https://sbionline.sharepoint.com/sites/bloggers" title="Blog @ SBI">Blog @ SBI</a></td>
+</tr>
+
+<th><b>ONLINE / PAYMENTS<b></th>
+
+<tr>
+<td><a href="https://www.onlinesbi.com/" title="OnlineSBI.com">OnlineSBI</a></td>
+<td><a href="https://inbintranet.onlinesbi.com/" title="INB Branch Interface Login">INB Branch Interface</a> / <a href="https://www.inbintranet.com/" title="Link 2">Link 2</a></td>
+<td><a href="https://prepaid.onlinesbi.com/" title="Prepaid/Gift Cards">Prepaid/Gift Cards</a></td>
+<td><a href="https://oaa.onlinesbi.com/oao/onlineaccapp.htm" title="Online SB Account Application">Online SB Account Application</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://www.onlinesbi.com/sbicollect/icollecthome.htm" title="State Bank Collect">State Bank Collect</a></td>
+<td><a href="https://retail.onlinesbi.com/personal/instapay_oxipay.html" title="Bill Payment">Bill Payment</a></td>
+<td><a href="https://scfu.onlinesbi.com/" title="Supply Chain Finance">Supply Chain Finance</a></td>
+<td><a href="http://10.18.1.41/fa/" title="iFAMS">iFAMS</a></td>
+</tr>
+
+<tr>
+<td><a href="https://retail.onlinesbi.com/personal/tax_retail.html" title="Online Tax Payments">Online Tax Payments</a></td>
+<td><a href="http://192.168.123.10:9003/upload/sbibhome.do" title="PAI Policy Download">PAI Policy Download</a></td>
+<td><a href="https://ccr.statebanktimes.in" title="CCRA">CCRA</a></td>
+<td><a href="https://icrs.statebanktimes.in" title="Insurance Claim Reporting System">Insurance Claim Reporting</a></td>
+</tr>
+
+<th><b>CIRCLE LINKS<b></th>
+
+<tr>
+<td><a href="https://lhoahm.statebanktimes.in/" title="Ahmedabad Circle">Ahmedabad Circle</a></td>
+<td><a href="https://lhoand.statebanktimes.in/" title="Amaravati Circle">Amaravati Circle</a></td>
+<td><a href="https://lhoban.statebanktimes.in/" title="Banglore Circle">Bangalore Circle</a></td>
+<td><a href="https://lhobho.statebanktimes.in/" title="Bhopal Circle">Bhopal Circle</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhobhu.statebanktimes.in/" title="Bhubaneswar Circle">Bhubaneswar Circle</a></td>
+<td><a href="https://lhocha.statebanktimes.in/chdweb/web-en.aspx" title="Chandigarh Circle">Chandigarh Circle</a></td>
+<td><a href="https://lhoche.statebanktimes.in/" title="Chennai Circle">Chennai Circle</a></td>
+<td><a href="https://lhodel.statebanktimes.in/" title="Delhi Circle">Delhi Circle</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhohyd.statebanktimes.in/webcontent/home_eng.html" title="Hyderabad Circle">Hyderabad Circle</a></td>
+<td><a href="https://lhojai.statebanktimes.in/" title="Jaipur Circle">Jaipur Circle</a></td>
+<td><a href="https://lhokol.statebanktimes.in/kolkata/" title="Kolkata Circle">Kolkata Circle</a></td>
+<td><a href="https://lholuc.statebanktimes.in/" title="Lucknow Circle">Lucknow Circle</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhomum.statebanktimes.in/" title="Mumbai Circle">Mumbai Circle</a></td>
+<td><a href="https://lhomum.statebanktimes.in:8088/MainPage/MainPage.aspx" title="Mumbai Metro A and BU">Mumbai Metro ABU</a></td>
+<td><a href="https://lhoguw.statebanktimes.in/" title="North-Eastern Circle">North-Eastern Circle</a></td>
+<td><a href="https://lhopat.statebanktimes.in/" title="Patna Circle">Patna Circle</a></td>
+</tr>
+
+<tr>
+<td><a href="https://lhotri.statebanktimes.in/" title="Thiruvananthapuram Circle">Thiruvananthapuram Circle</a></td>
+</tr>
+
+<th><b>INCOME TAX RELATED<b></th>
+
+<tr>
+<td><a href="https://incometaxindia.gov.in/Pages/default.aspx" title="Income Tax Department">Income Tax Department</a></td>
+<td><a href="https://www.incometaxindiaefiling.gov.in/" title="eFiling IT Return">eFiling IT Return</a></td>
+<td><a href="https://tin.tin.nsdl.com/oltas/servlet/TanSearch" title="TAN Search (NSDL)">TAN Search (NSDL)</a></td>
+<td><a href="http://www.incometaxindia.gov.in/Pages/download-forms.aspx" title="Income Tax Forms">Income Tax Forms</a></td>
+</tr>
+
+<tr>
+<td><a href="http://tin-nsdl.com/" title="TIN-NSDL Site">TIN-NSDL Site</a></td>
+<td><a href="https://tin.tin.nsdl.com/oltas/refundstatuslogin.html" title="IT Refund Status">IT Refund Status</a></td>
+<td><a href="https://www.tin-nsdl.com/OLTAS/oltas-note.php" title="OLTAS Correction">OLTAS Correction</a></td>
+<td><a href="https://incometaxindiaefiling.gov.in/portal/knowpan.do" title="PAN Verification">PAN Verification</a></td>
+</tr>
+
+<tr>
+<td><a href="http://10.1.228.25:8085/pantan.jsp" title="PAN/TAN Enquiry (SBI)">PAN/TAN Enquiry (SBI)</a></td>
+<td><a href="https://onlineservices.tin.egov-nsdl.com/etaxnew/tdsnontds.jsp" title="eTDS Payment">eTDS Payment</a></td>
+<td><a href="https://www.tdscpc.gov.in/en/home.html" title="TDS - TRACES SITE">TDS - TRACES SITE</a></td>
+<td><a href="https://cleartax.in/" title="ClearTax eFile">ClearTax</a> / <a href="https://www.taxspanner.com/?utm_source=sbi" title="TaxSpanner eFile">TaxSpanner eFiling</a> </td>
+</tr>
+
+<th><b>STATE BANK DEPARTMENTS</b></th>
+
+<tr>
+<td><a href="https://rboutreach.statebanktimes.in/" title="ABU Department">ABU Department</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/alternatechannel/" title="Alternate Channels">Alternate Channels</a></td>
+<td><a href="https://amlcft.statebanktimes.in/" title="AMLCFT">AMLCFT</a></td>
+<td><a href="https://analytics.statebanktimes.in/analytics_web/" title="Analytics Department">Analytics Department</a></td>
+</tr>
+
+<tr>
+<td><a href="https://almonline.statebanktimes.in/" title="Asset Liability Management Dept">Asset Liability Management Dept</a> / <a href="https://10.1.13.18/" title="Alternate Link">Link 2</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/bankingoperdep/" title="Banking Operations Department">Banking Operations Department</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/bprproject/" title="BPR Project">BPR Project</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/brredesgnw/" title="Br Redesign & NW Mgmt">Br Redesign & NW Mgmt</a></td>
+</tr>
+
+<tr>
+<td><a href="https://ecagcen.statebanktimes.in/cag/home.php" title="CAG BU">CAG BU</a></td>
+<td><a href="https://cmp.statebanktimes.in:8080/" title="Cash Management Product Centre">Cash Management Product Centre</a></td>
+<td><a href="https://sbisi4.sbi.co.in/cbmm/cbsectt_docs11.jsp" title="Central Board Secretariat">Central Board Secretariat</a></td>
+<td><a href="https://sbionline.sharepoint.com/sites/compliance-cc/SitePages/index.aspx" title="Compliance Department">Compliance Department</a> / <a href="https://compliance-cc.statebanktimes.in/" title="Compliance Department Old Site">Old Site</a></td>
+</tr>
+
+<tr>
+<td><a href="https://comport.statebanktimes.in/SBICompliance/faces/MainCompliancePage.jspx" title="COMPORT (Compliance Department)">COMPORT (Compliance Department)</a></td>
+<td><a href="http://10.201.122.87:8001/SBI-Network-Dashboard/Branch_Visibility.jsp" title="Connectivity Dashboard">Connectivity Dashboard</a></td>
+<td><a href="https://cbdev.statebanktimes.in/Home.aspx" title="Core Banking Portal">Core Banking Portal</a></td>
+<td><a href="https://cppd.statebanktimes.in/" title="CPPD">CPPD</a></td>
+</tr>
+
+<tr>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/crpd/" title="CRPD">CRPD</a></td>
+<td><a href="http://10.207.226.101/LB.html" title="Current Account Liability Products">Current Account Liability Products</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/customerservice/" title="Customer Service">Customer Service</a></td>
+<td><a href="https://sbionline.sharepoint.com/sites/CrossSelling2" title="Customer Value Enhancement Business Unit (CVE-BU)">Customer Value Enhancement Business Unit (CVE-BU)</a></td>
+</tr>
+
+<tr>
+<td><a href="https://erd.statebanktimes.in/" title="Economic Research Department - ERD">Economic Research Department - ERD</a></td>
+<td><a href="https://lositrb.onlinesbi.com/LOSITRB" title="FI & GS">FI & GS</a></td>
+<td><a href="https://rboutreach.statebanktimes.in/RBU/" title="FI & MF">FI & MF</a></td>
+<td><a href="https://frt.statebanktimes.in/frt2/default.aspx" title="Financial Reporting and Taxation">Financial Reporting and Taxation</a></td>
+</tr>
+
+<tr>
+<td><a href="https://gmumumbai.statebanktimes.in/SBIGlobal/index.aspx" title="Global Markets">Global Markets</a></td>
+<td><a href="https://lhodel.statebanktimes.in:8443/govt/" title="Govt.Banking Unit">Govt.Banking Unit</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/departments1.eng/hrstaffmatter/" title="HR Staff Matters">HR Staff Matters</a></td>
+<td><a href="https://isd.statebanktimes.in/" title="Information Security">Information Security</a></td>
+</tr>
+
+<tr>
+<td><a href="https://ima.statebanktimes.in/contents/iad.php" title="Internal Audit">Internal Audit</a></td>
+<td><a href="https://ibg.statebanktimes.in/" title="International Banking Group">International Banking Group</a></td>
+<td><a href="https://itbudgeting.statebanktimes.in/ITBNCC/" title="IT-B&CC">IT-B&CC</a></td>
+<td><a href="https://itnetwork.statebanktimes.in/" title="IT-Network Department">IT-Network Department</a></td>
+</tr>
+
+<tr>
+<td><a href="https://itpr.statebanktimes.in" title="IT-Partner Relationships">IT-Partner Relationships</a></td>
+<td><a href="https://itrsnc.statebanktimes.in/" title="IT-Reconciliation and Settlement-Non Channel">IT-Reconciliation and Settlement-Non Channel</a></td>
+<td><a href="https://otherapps.statebanktimes.in/" title="IT-Special Projects-II">IT-Special Projects-II</a></td>
+<td><a href="https://sbionline.sharepoint.com/sites/sbigitc/SitePages/DGM(SP4).aspx" title="IT-Special Projects-IV">IT-Special Projects-IV</a></td>
+</tr>
+
+<tr>
+<td><a href="https://llmslos.statebanktimes.in/losdashboard/" title="LLMS / LOS Department">LLMS / LOS Department</a></td>
+<td><a href="https://mcg.statebanktimes.in/" title="Mid Corporate Group">Mid Corporate Group</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/newbusiness/" title="New Business">New Business</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/oadccmumbai/" title="OAD CC Mumbai">OAD CC Mumbai</a></td>
+</tr>
+
+<tr>
+<td><a href="https://10.0.22.170:8070/Feedback/" title="Online Feedback Survey-Reports">Online Feedback Survey-Reports</a></td>
+<td><a href="https://pbbu.statebanktimes.in/" title="Personal Banking Business Unit - PBBU">PBBU</a></td>
+<td><a href="https://hrcc.statebanktimes.in/Index_Files/Pmd/PmdHome.html" title="Personal Management Department">Personal Management Dept</a></td>
+<td><a href="https://pe1.statebanktimes.in/Home.aspx" title="Platform Engineering I">Platform Engineering I</a></td>
+</tr>
+
+<tr>
+<td><a href="https://hrcc.statebanktimes.in/Index_Files/Ppg/PpgHome.html" title="PPG Department">PPG Dept</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/preciousmetals/" title="Precious Metals">Precious Metals</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/premisesestate/" title="Premises Estate">Premises Estate</a></td>
+<td><a href="https://pfsbu.statebanktimes.in/" title="Project Finance SBU">Project Finance SBU</a></td>
+</tr>
+
+<tr>
+<td><a href="https://rajbhasha.statebanktimes.in/" title="Rajbhasha Vibhag">Rajbhasha Vibhag</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/reconcilation" title="Reconcilation">Reconcilation</a></td>
+<td><a href="https://rehbu.statebanktimes.in/" title="REHBU Home Loans">REHBU Home Loans</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/righttoinfodept/" title="Right to Information Dept">Right to Information Dept</a></td>
+</tr>
+
+<tr>
+<td><a href="https://rmd.statebanktimes.in/" title="Risk Management Department">Risk Management Department</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/ruralbusinessunit/" title="Rural Business Unit">Rural Business Unit</a></td>
+<td><a href="https://sarg.statebanktimes.in" title="SARG">SARG</a></td>
+<td><a href="http://10.7.225.38:91/" title="SCFU Operations">SCFU Operations</a></td>
+</tr>
+
+<tr>
+<td><a href="https://sbisecurity.statebanktimes.in/SBI-Security/" title="Security Department">Security Department</a></td>
+<td><a href="https://frt.statebanktimes.in/sb/default.aspx" title="Shares and Bonds">Shares and Bonds</a></td>
+<td><a href="https://10.189.39.73/" title="SMEBU and Products">SMEBU and Products</a></td>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/systemsproceduresdept/" title="Systems Procedures Department">Systems Procedures Department</a></td>
+</tr>
+
+<tr>
+<td><a href="https://info.sbi/wps/myportal/sbitimes/department2.eng/vigilancedept/" title="Vigilance Department">Vigilance Department</a></td>
+<td><a href="https://projectlotus.sbi.co.in/" title="YONO Business Unit/Project Lotus">YONO Business Unit/Project Lotus</a></td>
+</tr>
+
+<th><b>OTHERS<b></th>
+
+<tr>
+<td><a href="http://10.0.10.22/" title="Data Warehouse Portal">Data Warehouse Portal</a></td>
+<td><a href="ftp://10.73.0.105/NEWSOFTWARES" title="Core Bulk Upload Tools">Core Bulk Upload Tools</a></td>
+<td><a href="http://10.1.1.26/index.php" title="Real Estate Housing Business Unit">Real Estate Housing Business Unit</a></td>
+<td><a href="https://www.sbi.co.in/sbipension/user.htm" title="Site for Pensioners">Site for Pensioners</a></td> 
+</tr>
+
+<tr>
+<td><a href="https://gmukol.statebanktimes.in/" title="GMU (FD) Kolkata">GMU (FD) Kolkata</a></td>
+<td><a href="http://10.25.8.35:8080/index.html" title="Forex SIM Login">Forex SIM Login</a></td>
+<td><a href="http://10.0.229.44/FinnOneCAS/CheckLogin.los?X" title="FinnOne CAS">FinnOne CAS</a></td>
+<td><a href="http://censusindia.gov.in/2011-villagedirectory/index.html" title="Town and Village Code Directory">Town and Village Code Directory</a></td>
+</tr>
+
+<tr>
+<td><a href="http://proxysbg.sbi.co.in/proxysbg.pac" title="SBI Proxy URL - Right click link and click Copy Shortcut" onclick="alert('Right click and click Copy Shortcut');">SBI Proxy URL</a> / <a href="http://proxysbg.sbi.co.in/proxy.js" title="Old SBI Proxy URL 1 - Right click link and click Copy Shortcut" onclick="alert('Right click and click Copy Shortcut');">Old Url 1</a> / <a href="http://proxytest.sbi.co.in/proxy.js" title="Old SBI Proxy URL 2 - Right click link and click Copy Shortcut" onclick="alert('Right click and click Copy Shortcut');">2</a> / <a href="http://proxysbg.sbi.co.in/proxy.pac" title="Old SBI Proxy URL 3 - Right click link and click Copy Shortcut" onclick="alert('Right click and click Copy Shortcut');">3</a></td>
+<td><a href="https://outlook.office365.com/EWS/Exchange.asmx" title="Microsoft Exchange Server URL - Right click link and click Copy Shortcut" onclick="alert('Right click and click Copy Shortcut');" >Microsoft Exchange Server URL</a></td>
+<td><a href="https://ems.sbi.co.in/dsite.nsf?Open"  title="Old EMS Site - ems.sbi.co.in">Old EMS (EMail) Site</a></td>
+<td><a href="http://ndmadm01.sbi.co.in/resetpwd.nsf" title="EMS eMail Password Reset">EMS EMail Password Reset</a></td>
+</tr>
+
+<tr>
+<td><a href="https://10.190.150.240/" title="Printer/GCC/IIS Services Reset portal for Virtual Server branches">Virtual Server Branches Portal</a></td>
+<td><a href="http://10.212.37.80:8000/OptiQBranchAdmin/Login.aspx" title="OptiQ CEEP Admin Login">OptiQ CEEP Admin Login</a></td>
+<td><a href="ftp://10.76.69.33/easy2go/thi.html" title="Easy2Go Trivandrum">Easy2Go</a></td>
+<td><a href="http://pmkisan.gov.in/BeneficiaryStatus/BeneficiaryStatus.aspx" title="PM Kisan Status">PM Kisan Status</a></td>
+</tr>
+
+<tr>
+<td><a href="https://support.office.com/en-us/office-training-center" title="Office 365 Training Center">Office 365 Training Center</a></td>
+<td><a href="https://sbiquiz.statebanktimes.in/ethicstutorial/" title="Ethics Tutorial">Ethics Tutorial</a></td>
+</tr>
+
+<!-- EDITING ENDS -->
+
+
+
+<!-- EDIT BELOW CODE ONLY IF YOU KNOW WHAT YOU ARE DOING -->
+
+</tbody></table>
+
+<TABLE style="margin: 0px; padding: 0px; width: 100%; table-layout: fixed;">
+  <TBODY>
+  <TR style="margin: 0px; padding: 0px; width: 100%;">
+    <TD style="margin: 0px; padding: 0px; height: 20px;">
+      <P id="vrscroller" style='margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; line-height: 1; font-family: "Roboto", "Helvetica", "Arial", sans-serif; font-size: 16px; font-weight: bold; white-space: nowrap;' align="center">Created by Visakh R
+
+<script type="text/javascript" language="JavaScript">
+
+<!-- 
+var nSpeed = 80;
+var nMsg = 0;
+
+var messages = new Array
+(
+   'Created by Visakh R',
+   'Contact : visakh.rajendran@sbi.co.in '
+);
+
+function doScroller(text, pos, direction)
+{
+   var vrscroller = document.getElementById('vrscroller');
+   var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;   
+
+   if (hasInnerText)
+      vrscroller.innerText = ' '+text.substring(0, pos) ;
+   else
+      vrscroller.textContent = ' '+text.substring(0, pos) ;   
+
+   pos += direction;
+   if (pos > text.length)
+      setTimeout('doScroller("'+text+'",'+pos+','+(-direction)+')', nSpeed*10);
+   else
+   {
+     if (pos < 0)
+     {
+        nMsg++;
+        if(nMsg >= messages.length)
+          nMsg = 0;
+        text = messages[nMsg];
+        direction = -direction;
+     }
+     setTimeout('doScroller("'+text+'",'+pos+','+direction+')', nSpeed);
+   }
+}
+
+doScroller(messages[0], 0, 1);
+
+
+// -->
+</script>
+
+</P></TD></TR></TBODY></TABLE>
+
+</DIV></DIV></DIV>
+<DIV class="rndBdr" id="divsrch" style="margin: 2px 2px 0px; padding: 6px; left: 70%; top: 0px; text-align: left; right: 0px; bottom: 0px; overflow: auto; position: relative; background-color: rgb(0, 177, 236);">
+<TABLE style="margin: 0px; padding: 0px; width: 100%;  table-layout: fixed;">
+  <TBODY>
+  <TR style="margin: 0px; padding: 0px; width: 100%;">
+    <TD style="margin: 0px; padding: 0px; height: 0px;">
+      <P align="left" style='margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; line-height: 1; font-family: "Roboto", "Helvetica", "Arial", sans-serif; font-size: 15px; font-weight: bold;'> 
+          <A title="Search">CTRL + F  &#x1F50D;</A> <INPUT id="UI" style="margin: 0px; padding: 0px;" onkeyup="newSrch(this)" type="text"  maxlength="60"> 
+<span id="spanclose" style="display:none;"><A onclick="srchclose()" title="Close">Close [&#x2718;]</A></span>
+	<!-- onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" -->
+          </TD></TR></TBODY></TABLE>
+
+<DIV id="div2_h" class="rndBdr" style="display: none; margin: 0px; padding: 0px; left: 0px; top: 20px; text-align: left; right: 0px; bottom: 0px; overflow: auto; position: relative; background-color: rgb(255, 255, 255);">
+
+<TABLE class="tab1" id="t2">
+     
+<THEAD id="t2_head" style="display: none;">
+      
+<TR><th>Search Results:</th>
+</TR>
+     </THEAD>
+     
+<TBODY id="t2_body">
+
+     </TBODY>
+    </TABLE>
+
+</DIV></DIV>
+
+<!-- CREATED BY VISAKH R-->
+<!-- VISAKH.RAJENDRAN@SBI.CO.IN -->
+</BODY></HTML>
