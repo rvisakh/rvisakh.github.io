@@ -142,16 +142,10 @@ var oTab = document.getElementById("t2_body");
              if (found > f) {
                  clone =iTr[i].cloneNode(true);
 
-                 if (a[0]) {
-                     clone.getElementsByTagName("a")[0].innerHTML = a[0];
-                 } else if (a[1]) {
-                     clone.getElementsByTagName("a")[1].innerHTML = a[1];
-                 } else if (a[2]) {
-                     clone.getElementsByTagName("a")[2].innerHTML = a[2];
-                 } else if (a[3]) {
-                     clone.getElementsByTagName("a")[3].innerHTML = a[3];
-                 } else if (a[4]) {
-                     clone.getElementsByTagName("a")[4].innerHTML = a[4];
+                 for (ai = 0; ai < 5; ai++) {
+                 if (a[ai]) {
+                     clone.getElementsByTagName("a")[ai].innerHTML = a[ai];
+                 } 
                  }
 
                  var tdclone=document.createElement("tr");
@@ -178,7 +172,6 @@ var oTab = document.getElementById("t2_body");
   
 </HEAD>  
 <BODY>
-<!-- BODY link=#330099 vlink=#330099 -->
 
 <DIV class="rndBdr" id="lnks" style="margin: 2px 2px 0px; padding: 6px; left: 0px; top: 0px; text-align: left; bottom: 0px; overflow: hidden; position: absolute; background-color: rgb(0, 177, 236);">
 <TABLE style="margin: 0px; padding: 0px; width: 100%; table-layout: fixed;">
